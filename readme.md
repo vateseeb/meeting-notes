@@ -1,6 +1,6 @@
-# Project Title
+# Meeting Notes
 
-A brief description of what this project does and who it's for.
+Transcribe your meetings notes - or any other audio file - with OpenAI's whisper model.
 
 ## Installation 
 
@@ -10,7 +10,12 @@ Install project dependencies:
 pip install -r requirements.txt
 ```
 
-## Usage/Examples
+Set your OpenAI API key 
+```bash
+export OPENAI_API_KEY=<token>
+```
+
+## Usage
 
 This script accepts the input and output file names as command-line arguments. Here's how you can use it:
 

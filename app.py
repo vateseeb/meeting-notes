@@ -1,4 +1,5 @@
 import os
+import sys
 from pydub import AudioSegment
 import openai
 
@@ -6,7 +7,7 @@ import openai
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 # Function to transcribe an audio file using OpenAI
-def transcribe_audio(file_path):
+def transcribe_audio(file_path, output_file):
     # Load the audio file using PyDub
     song = AudioSegment.from_file(file_path)
 
@@ -38,9 +39,16 @@ def transcribe_audio(file_path):
     return transcriptions
 
 # Example usage
-file_path = "./notes.m4a"
-transcriptions = transcribe_audio(file_path)
-for i, transcription in enumerate(transcriptions):
-    # write to one file
-    with open("transcript.txt", "a") as f:
-        f.write(transcription)
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python app.py [input_file] [output_file]")
+        sys.exit(1)
+
+    file_path = sys.argv[1]
+    output_file = sys.argv[2]
+
+    transcriptions = transcribe_audio(file_path, output_file)
+    for i, transcription in enumerate(transcriptions):
+        # write to one file
+        with open(output_file, "a") as f:
+            f.write(transcription)
